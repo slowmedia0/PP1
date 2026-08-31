@@ -34,24 +34,6 @@ public class CartController {
         this.cartMapper = cartMapper;
     }
 
-    @PostMapping(params = "addProductByIdToCart")
-    public String addProductToCart(@RequestParam("product_id") BigInteger productId){
-        Cart cart = cartService.getCurrentCart();
-        cartService.addProductToCart(productId, cart);
-        return "redirect:/cart";
-    }
-
-    @PostMapping(params = "addProductByCartElemIdToCart")
-    public String addProductByCartElemIdToCart(@RequestParam("addProductByCartElemIdToCart") BigInteger cartElemId){
-        cartService.addProductByCartElemIdToCart(cartElemId);
-        return "redirect:/cart";
-    }
-
-    @PostMapping(params = "deleteProductFromCart")
-    public String deleteProductFromCart(@RequestParam("deleteProductFromCart") BigInteger cartElemId){
-        cartService.deleteProductFromCart(cartElemId);
-        return "redirect:/cart";
-    }
 
 
     @PostMapping(params = "addСartToOrder")
@@ -82,7 +64,7 @@ public class CartController {
 
     @GetMapping
     public String goToCart(Model model) {
-        Cart cart = cartService.getCurrentCart();
+        Cart cart = cartService.getCurrentCartWithoutCartElems();
 
         List<BigInteger> selectedCartElemIds = (List<BigInteger>) model.getAttribute("selectedCartElemIds");
         CartDTO cartDTO = cartMapper.toDto(cart);

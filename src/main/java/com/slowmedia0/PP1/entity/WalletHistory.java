@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.JdbcType;
 import org.hibernate.dialect.type.PostgreSQLEnumJdbcType;
-import org.springframework.data.rest.core.annotation.RestResource;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

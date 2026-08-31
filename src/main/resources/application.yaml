@@ -5,9 +5,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/Pp1DB
     username: postgres
     password: "56793"
-  date:
-    ret:
-      base-path: /data-api
+
 
 server:
   port: 9090
@@ -15,6 +13,7 @@ server:
   #  key-store: classpath:mykeys.jks
    # key-store-password: "HCKl)3632"
     # key-password: "HCKl)3632"
+
 
 logging:
   file:

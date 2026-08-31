@@ -13,7 +13,6 @@ import org.hibernate.PropertyNotFoundException;
 import org.hibernate.annotations.JdbcType;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.dialect.type.PostgreSQLEnumJdbcType;
-import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -31,7 +30,6 @@ import java.util.Locale;
 @Setter
 @NoArgsConstructor
 @Table(name = "users")
-@RestResource(rel = "users", path = "users")
 public class User extends BaseEntity implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "users_id_seq_gen")

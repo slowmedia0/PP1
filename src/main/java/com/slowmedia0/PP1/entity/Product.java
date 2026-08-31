@@ -2,8 +2,6 @@ package com.slowmedia0.PP1.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.rest.core.annotation.RestResource;
-
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -18,7 +16,6 @@ import java.util.Set;
 @AllArgsConstructor
 @Table(name ="products")
 @Entity
-@RestResource(rel = "products", path = "products")
 public class Product extends BaseEntity {
     @Id
     @GeneratedValue(strategy =GenerationType.SEQUENCE, generator = "products_id_seq_gen")

@@ -25,7 +25,7 @@ import static java.util.stream.Collectors.toList;
 @Mapper(componentModel = "spring", uses =  {UserMapper.class, ProductCategoryMapper.class })
 public interface ProductMapper {
 
-    @Mapping(target = "ownerDTO",source = "user")
+    @Mapping(target = "ownerId",source = "user.id")
     @Mapping(target = "productCategoryDTOS", source = "productCategoryTOProducts")
     ProductDTO toDto (Product product);
     default List<ProductCategoryDTO> mapListProductCategoriesTO (List<ProductCategoryTOProduct> list){
@@ -35,8 +35,15 @@ public interface ProductMapper {
         List<ProductCategoryDTO> list3 = list2.stream().map(productCategoryMapper::toDto).toList();
         return list3;
     }
-    @Mapping(target = "user",source = "ownerDTO")
+    @Mapping(target = "user", expression = "java(IdToUser(productDTO.ownerId()))")
     @Mapping(target = "productCategoryTOProducts",ignore = true)
     @Mapping(target = "orderElems", ignore = true)
     Product toEntity(ProductDTO productDTO);
+
+    default User IdToUser(BigInteger id){
+        if (id==null) return null;
+        User user = new User();
+        user.setId(id);
+        return user;
+    }
 }

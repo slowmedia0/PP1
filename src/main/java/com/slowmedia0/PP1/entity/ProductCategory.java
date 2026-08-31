@@ -2,7 +2,6 @@ package com.slowmedia0.PP1.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.rest.core.annotation.RestResource;
 
 import java.math.BigInteger;
 import java.util.ArrayList;

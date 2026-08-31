@@ -21,13 +21,6 @@ public class WebConfig implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry){
         registry.addViewController("/login").setViewName("login");
     }
-/*
-    @Override
-    public void configurePathMatch(PathMatchConfigurer configurer){
-        configurer.addPathPrefix("/api", clazz -> clazz.isAnnotationPresent(RestController.class));
-    }
-
- */
 }
 
 

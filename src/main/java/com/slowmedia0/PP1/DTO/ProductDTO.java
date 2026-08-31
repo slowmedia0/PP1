@@ -17,9 +17,10 @@ public record ProductDTO(
         int inventory,
         String productPhotoDirectoryURL,
         // Map<String,Object> attributes;
-        UserDTO ownerDTO,
-        List<ProductCategoryDTO> productCategoryDTOS
+        BigInteger ownerId,
+        List<ProductCategoryDTO> productCategoryDTOS,
 
+        ActionEntity action
 
 ) {
     public BigDecimal getPriceInRubles() {

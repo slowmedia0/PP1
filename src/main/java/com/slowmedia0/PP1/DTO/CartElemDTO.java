@@ -18,4 +18,5 @@ public class CartElemDTO {
     private ProductDTO productDTO;
 
     private boolean checked;
+    private ActionEntity lastAction;
 }

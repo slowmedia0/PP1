@@ -5,12 +5,22 @@ import com.slowmedia0.PP1.DTO.ProductMapper;
 import com.slowmedia0.PP1.database.ProductRepository;
 import com.slowmedia0.PP1.entity.Product;
 import jakarta.transaction.Transactional;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Optional;
 
 @Service
+@Validated
 public class ProductService {
 
     ProductRepository productRepository;
@@ -21,16 +31,17 @@ public class ProductService {
         this.productMapper = productMapper;
     }
 
-    public List<ProductDTO> showAllProductsFromDb(){
-        List<Product> products = productRepository.findAll();
-        List<ProductDTO>productDTOS = products.stream().map(element -> productMapper.toDto(element)).toList();
-        return productDTOS;
+    @Transactional
+    public Page<ProductDTO> showPageOfProducts(@PositiveOrZero(message = "PageNumber should be positive or zero!") int pageNumber, @Positive(message = "Size of Page should be positive!") int size){
+        Pageable pageRequest = PageRequest.of(pageNumber,size, Sort.by("id").ascending());
+        Page<Product> page = productRepository.findAll(pageRequest);
+        Page<ProductDTO> pageDto = page.map(element -> productMapper.toDto(element));
+        return pageDto;
     }
 
     @Transactional
-    public ProductDTO getProduct(BigInteger productId){
-        Product product = productRepository.findById(productId).get();
-        ProductDTO productDTO = productMapper.toDto(product);
+    public Optional<ProductDTO> getProductDTOById(@NotNull(message = "Product's Id can not be null!") @Positive(message = "Product's Id should be positive!") BigInteger productId){
+        Optional<ProductDTO> productDTO = productRepository.findById(productId).map(elem -> productMapper.toDto(elem));
         return  productDTO;
     }
 
