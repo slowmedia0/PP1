@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: PP1
+  datasource:
+    url: jdbc:postgresql://localhost:5432/Pp1DB
+    username: postgres
+    password: "56793"
+  date:
+    ret:
+      base-path: /data-api
+
+server:
+  port: 9090
+ # ssl:
+  #  key-store: classpath:mykeys.jks
+   # key-store-password: "HCKl)3632"
+    # key-password: "HCKl)3632"
+
+logging:
+  file:
+    name: "C:/Users/kosel/IdeaProjects/PP1/logs/App.log"
+  level:
+    root: INFO
+    org.springframework.security: DEBUG

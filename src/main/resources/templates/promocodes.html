@@ -1,0 +1,17 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>promocodes</title>
+</head>
+<body>
+<h1>Введите промокод</h1>
+
+<form method="get" th:action="@{/home/cart}">
+    <button type="submit" name="goToCart">Вернутся в корзину</button><br>
+</form>
+
+<form method="post" th:action="@{/home/cart/order}">
+    <input type="text" name="promocode_title" placeholder="Например, ..."/>
+    <button type="submit" name="submitPromocode">Применить</button><br>
+</form>
+
+</body>

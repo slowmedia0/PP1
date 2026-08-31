@@ -1,0 +1,16 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>favorite</title>
+</head>
+<body>
+    <div>
+        <div th:each="product: {$products}">
+            <span th:text="${product.descriptionSmall}">Краткое описание товара</span><br>
+            <span th:text="|${product.price} $|">Цена товара</span><br>
+
+        </div>
+
+
+    </div>
+
+</body>

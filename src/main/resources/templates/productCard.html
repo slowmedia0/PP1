@@ -1,0 +1,33 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>productCard</title>
+</head>
+<body>
+ <h1>Карточка товара</h1>
+<div>
+    <div>
+        <!-- Переход на главную страницу -->
+        <form method="get"  th:action="@{/home}">
+            <button type="submit" name="goToHome">Вернутся на Главную страницу</button><br>
+        </form>
+
+        <!-- Добавить товар в избранное -->
+        <form th:action="@{/profile/favorite}" method="post">
+            <input type="hidden" name="product_id" th:value="${productDTO.id}"/>
+            <button type="submit" name="addProductToFavorite">🧡</button><br><br>
+        </form>
+
+        <!-- Вывод информации о карточке товара -->
+        <span th:text="${productDTO.descriptionBig}">Полное описание товара</span><br>
+        <span th:text="|${productDTO.priceInRubles} руб.|">Цена товара</span><br>
+        <span th:text="|Осталось ${productDTO.inventory} шт.|">Количество товаров в наличии</span><br>
+
+        <!-- Добавить товар в корзину -->
+        <form method="post" th:action="@{/cart}">
+            <input type="hidden" name="product_id" th:value="${productDTO.id}"/>
+            <button type="submit" name="addProductByIdToCart">Добавить в корзину</button><br><br>
+        </form>
+
+    </div>
+</div>
+</body>

@@ -1,0 +1,45 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>cart</title>
+</head>
+<body>
+    <h1>Корзина</h1>
+
+    <!-- Вернутся на Главную страницу-->
+    <form method="get" th:action="@{/home}">
+        <button type="submit" name="goToHome">Вернутся на Главную страницу</button><br>
+    </form>
+
+    <form method="post" th:action="@{/cart}">
+    <div th:each="cartElemDTO : ${cartDTO.cartElemDTOS}">
+        <input type="checkbox" name="cartElemIds" th:checked="${cartElemDTO.checked}" th:value="${cartElemDTO.id}" onchange="this.form.submit()"/>
+
+        <!--Вывод инофрмации о товаре-->
+        <span th:text="${cartElemDTO.productDTO.descriptionSmall}"></span><br>
+        <span th:text="|${cartElemDTO.productDTO.priceInRubles} руб.|"></span><br>
+
+        <!-- + ШТ. -  -->
+        <div>
+            <button type="submit" name="addProductByIdToCart"  th:value="${cartElemDTO.id}">+</button>
+            <span th:text="|${cartElemDTO.count} шт.|"></span>
+            <button type="submit" name="deleteProductFromCart" th:value="${cartElemDTO.id}">-</button><br>
+        </div>
+
+        <!-- Купить отдельный элемент корзины-->
+        <button type="submit" name="addСartElemToOrder" th:value="${cartElemDTO.id}">Купить</button><br>
+
+        <!-- Добавить товар в избранное -->
+        <div>
+            <input type="hidden" name="product_id" th:value="${cartElemDTO.productDTO.id}"/>
+            <button type="submit"  formmethod="post" th:formaction="@{/favorite}">🧡</button><br>
+        </div>
+    </div>
+        <!-- Купить выбранные элементы козины -->
+        <div>
+            <button type="submit" name="addСartToOrder">К оформлению</button><br>
+            <span th:text="|Итого: ${sumSelectedPriceInRubles} руб.|"></span>
+            <span th:text="|Количество позиций: ${selectedCount}|"></span><br>
+        </div>
+    </form>
+
+</body>

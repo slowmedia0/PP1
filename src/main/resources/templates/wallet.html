@@ -1,0 +1,31 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>wallet</title>
+</head>
+<body>
+<h1>Кошелек</h1>
+<div>
+    <div>
+        <!-- Вернутся в профиль -->
+        <form method="get"  th:action="@{/profile}">
+            <button type="submit" name="goToProfile">Вернутся в профиль</button><br>
+        </form>
+
+        <!-- Вывести сумму кошелька -->
+        Баланс:
+        <span th:text="${balanceInRubles}">Баланс></span><br>
+
+        <!-- Кнопка пополнить -->
+        <form method="post"  th:action="@{/profile/wallet}">
+            <label for="sumOfDeposit" >Сумма пополнения: </label>
+            <input type="text" id="sumOfDeposit" name="sumOfDeposit" /> <br>
+            <button type="submit" name="depositWallet">Пополнить</button><br>
+        </form>
+
+        <h2>Операции</h2>
+        <form method="get"  th:action="@{/profile/payment/paymentHistory}">
+            <button type="submit" name="goToPaymentHistory">История</button><br>
+        </form>
+    </div>
+</div>
+</body>

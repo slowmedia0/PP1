@@ -1,0 +1,41 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>order</title>
+</head>
+<body>
+<h1>Оформление заказа</h1>
+<div>
+    <div>
+        <!-- Вернутся в корзину -->
+        <form method="post"  th:action="@{/cart/order}">
+            <input type="hidden" name="order_id" th:value="${orderDTO.id}"/>
+            <button type="submit" name="goToCartFromOrder">Вернутся в корзину</button><br>
+        </form>
+
+        <!-- Вывод картинки товара и краткого его названия -->
+        <div th:each="orderElemDTO : ${orderDTO.orderELemsDTOS}">
+            <span th:text="${orderElemDTO.productDTO.descriptionSmall}"></span><br>
+        </div>
+
+        <!-- Кнопка ввода адреса доставки -->
+        <label for="address" >Адрес доставки: </label>
+        <input type="text" id="address" name="addressOfDelivery" /> <br>
+
+        <!-- Кнопка к переходу промокодов
+        <form method="post"  th:action="@{/cart/order/promocodes}">
+            <input type="hidden" name="order_id" th:value="${orderDTO.id}"/>
+            <button type="submit" name="addPromocodeToOrder">Промокоды</button><br>
+        </form> -->
+
+        <!--Показывается итоговая сумма и итоговая скидка, количество позиций -->
+        <span th:text="|Итого: ${sumPriceInRubles} руб.|"></span><br>
+        <span th:text="|Количество позиций: ${count}|"></span><br>
+
+        <!--Кнопка Заказать -->
+        <form method="post"  th:action="@{/cart/order}">
+            <input type="hidden" name="order_id" th:value="${orderDTO.id}"/>
+            <button type="submit" name="processFinalOrder">Заказать</button><br>
+        </form>
+    </div>
+</div>
+</body>

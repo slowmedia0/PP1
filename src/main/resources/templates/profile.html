@@ -1,0 +1,56 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>profile</title>
+</head>
+<body>
+<div>
+    <!-- Разлогинится -->
+    <form method="POST" th:action="@{/logout}">
+        <input type="submit" value="Выйти из аккаунта"/>
+    </form>
+
+    <!-- Отобразить информацию о пользователе -->
+    <span th:text="|Логин: ${userDTO.login}|"></span><br>
+    <span th:text="|Почта: ${userDTO.mail}|"></span><br>
+    <span th:text="|Пароль: ${userDTO.password}|"></span><br>
+    <span th:text="|Дата рождения: ${userDTO.dateOfBirth}|"></span><br>
+    <span th:text="|Пол: ${userDTO.sex}|"></span><br>
+    <span th:text="|Номер телефона: ${userDTO.phoneNumber}|"></span><br>
+
+    <!-- Реализовать отображения суммы на кошельке и возможность пополнения кошелька-->
+
+    <form th:action="@{/profile/payment}" method="get">
+        <button type="submit" name="goToPayment">Оплата</button><br><br>
+    </form>
+
+    <form th:action="@{/profile/settings}" method="get">
+        <button type="submit" name="goToSettings">Настройки</button><br><br>
+    </form>
+
+    <form th:action="@{/profile/favorite}" method="get">
+        <button type="submit" name="goToFavorite">Изрбанное</button><br><br>
+    </form>
+
+    <form th:action="@{/profile/activeOrders}" method="get">
+        <button type="submit" name="goToActiveOrders">Заказы</button><br><br>
+    </form>
+
+    <form th:action="@{profile/orderHistory}" method="get">
+        <button type="submit" name="goToActiveOrders">Покупки</button><br><br>
+    </form>
+
+    <form th:action="@{profile/waitProductCard}" method="get">
+        <button type="submit" name="goToWaitProductCard">Лист ожидания</button><br><br>
+    </form>
+
+    <form th:action="@{profile/userReviews}" method="get">
+        <button type="submit" name="goToUserReviews">Ваши отзывы</button><br><br>
+    </form>
+
+    <form th:action="@{profile/refunds}" method="get">
+        <button type="submit" name="goToUserRefunds">Возврат товара</button><br><br>
+    </form>
+
+</div>
+
+</body>

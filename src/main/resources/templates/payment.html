@@ -1,0 +1,23 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>payment</title>
+</head>
+<body>
+<h1>Оплата</h1>
+<div>
+    <div>
+        <!-- Переход на страницу профиля -->
+        <form method="get"  th:action="@{/profile}">
+            <button type="submit" name="goToProfile">Вернутся в профиль</button><br>
+        </form>
+
+        <h2>Способы оплаты</h2>
+        <!-- Перечислить способы оплаты -->
+
+        <h2>Операции</h2>
+        <form method="get"  th:action="@{/profile/payment/paymentHistory}">
+            <button type="submit" name="goToPaymentHistory">История</button><br>
+        </form>
+    </div>
+</div>
+</body>

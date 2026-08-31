@@ -1,0 +1,26 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>login</title>
+</head>
+<body>
+    <h1>Войти</h1>
+    <div th:if="${error}">
+        Error of authorization! Check your login or password!
+    </div>
+
+    <form method="get" th:action="@{/register}">
+        <button type="submit" name="goToRegister">Зарегистрироваться</button><br>
+    </form>
+
+    <form method="POST" th:action="@{/login}">
+        <label for="login" >Login: </label>
+        <input type="text" id="login" name="login" /> <br>
+
+        <label for="password">Password: </label>
+        <input type="text" id="password" name="password" /> <br>
+
+        <input type="submit" value="Войти"/><br>
+    </form>
+
+</body>
+</html>
